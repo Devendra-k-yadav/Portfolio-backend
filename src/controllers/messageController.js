@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import Message from "../models/Message.js";
 import sendMessageNotification from "../services/emailService.js";
-import createCrudController from "../utils/createCrudController.js";
 
 const localMessages = [];
 
@@ -29,10 +28,4 @@ const create = async (request, response) => {
   response.status(201).json({ message, emailSent });
 };
 
-const messageController = createCrudController(Message, {
-  sort: { createdAt: -1 },
-});
-
-messageController.create = create;
-
-export default messageController;
+export default { create };
